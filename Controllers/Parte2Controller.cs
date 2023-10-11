@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProvaPub.Interfaces;
 using ProvaPub.Models;
 using ProvaPub.Repository;
 using ProvaPub.Services;
@@ -25,17 +26,18 @@ namespace ProvaPub.Controllers
 		}
 	
 		[HttpGet("products")]
-		public ProductList ListProducts(int page)
+		public async Task<ProductList> ListProducts(int page, [FromServices] IProductService productService)
 		{
-			var productService = new ProductService(_ctx);
-			return productService.ListProducts(page);
+			var list = await productService.GetList(page);
+            return (ProductList)list;
 		}
 
 		[HttpGet("customers")]
-		public CustomerList ListCustomers(int page)
+		public async Task<CustomerList> ListCustomers(int page, [FromServices] ICustomerService customerService)
 		{
-			var customerService = new CustomerService(_ctx);
-			return customerService.ListCustomers(page);
+			var list = await customerService.GetList(page);
+
+            return (CustomerList)list;
 		}
 	}
 }
