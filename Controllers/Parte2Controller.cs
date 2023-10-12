@@ -19,10 +19,8 @@ namespace ProvaPub.Controllers
 		/// Como você faria pra criar uma estrutura melhor, com menos repetição de código? E quanto ao CustomerService/ProductService. Você acha que seria possível evitar a repetição de código?
 		/// 
 		/// </summary>
-		TestDbContext _ctx;
-		public Parte2Controller(TestDbContext ctx)
+		public Parte2Controller()
 		{
-			_ctx = ctx;
 		}
 	
 		[HttpGet("products")]

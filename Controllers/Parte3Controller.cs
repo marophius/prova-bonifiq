@@ -17,9 +17,9 @@ namespace ProvaPub.Controllers
 	public class Parte3Controller :  ControllerBase
 	{
 		[HttpGet("orders")]
-		public async Task<Order> PlaceOrder(string paymentMethod, decimal paymentValue, int customerId)
+		public async Task<Order> PlaceOrder(string paymentMethod, decimal paymentValue, int customerId, [FromServices] OrderService service)
 		{
-			return await new OrderService().PayOrder(paymentMethod, paymentValue, customerId);
+			return await service.PayOrder(paymentMethod, paymentValue, customerId);
 		}
 	}
 }
